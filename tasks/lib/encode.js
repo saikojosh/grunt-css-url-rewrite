@@ -59,7 +59,7 @@ exports.init = function(grunt) {
     var deleteAfterEncoding = opts.deleteAfterEncoding;
     var src = file.read(srcFile);
     var result = "";
-    var match, img, line, tasks, group;
+    var match, img, line, tasks, group, params;
 
     async.whilst(function() {
       group = rImages.exec(src);
@@ -77,13 +77,17 @@ exports.init = function(grunt) {
       if(group[4] == null) {
         result += group[1];
 
+        params = group[3].match(rParams);
+
         img = group[3].trim()
           .replace(rQuotes, "")
           .replace(rParams, ""); // remove query string/hash parmams in the filename, like foo.png?bar or foo.png#bar
 
         // see if this img was already processed before...
         if(cache[img]) {
-          grunt.log.error("The image " + img + " has already been encoded elsewhere in your stylesheet. I'm going to do it again, but it's going to make your stylesheet a lot larger than it needs to be.");
+          if(opts.warnDuplication !== false) {
+            grunt.log.error("The image " + img + " has already been encoded elsewhere in your stylesheet. I'm going to do it again, but it's going to make your stylesheet a lot larger than it needs to be.");
+          }
           result = result += cache[img];
           complete();
         } else {
@@ -107,7 +111,15 @@ exports.init = function(grunt) {
 
           exports.image(loc, opts, function(err, resp, cacheable) {
             if (err == null) {
-              var url = "url(" + resp + ")";
+              if(opts.keepParams && params && params.length > 0) {
+                loc = loc + params.join('');
+              }
+
+              if(opts.rewriteUrl) {
+                resp = opts.rewriteUrl(loc, opts, resp);
+              }
+
+              var url = 'url("' + resp + '")';
               result += url;
 
               if(cacheable !== false) {
@@ -153,7 +165,8 @@ exports.init = function(grunt) {
 
     // Set default, helper-specific options
     opts = _.extend({
-      maxImageSize: 32768
+      maxImageSize: 32768,
+      fetchExternal: true
     }, opts);
 
     var complete = function(err, encoded, cacheable) {
@@ -179,6 +192,10 @@ exports.init = function(grunt) {
 
       // External URL?
     } else if(rExternal.test(img)) {
+      if(!opts.fetchExternal) {
+        complete(null, img, false);
+        return;
+      }
       grunt.log.writeln("Encoding file: " + img);
       fetch.image(img, function(err, src, cacheable) {
         var encoded, type;
