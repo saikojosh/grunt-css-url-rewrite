@@ -30,7 +30,7 @@ An example configuration looks like this:
 
 ```js
 grunt.initConfig({
-  imageEmbed: {
+  cssUrlRewrite: {
     dist: {
       src: [ "css/styles.css" ],
       dest: "css/output.css",
@@ -53,7 +53,7 @@ grunt.initConfig({
 
 ### Optional Configuration Properties
 
-ImageEmbed can be customized by specifying the following options:
+CssUrlRewrite can be customized by specifying the following options:
 
 * `maxImageSize`: The maximum size of the base64 string in bytes. This defaults to `32768`, or IE8's limit. Set this to `0` to remove the limit and allow any size string.
 * `baseDir`: If you have absolute image paths in your stylesheet, the path specified in this option will be used as the base directory.
@@ -64,7 +64,7 @@ ImageEmbed can be customized by specifying the following options:
 Specify that an image should be skipped by adding the following comment directive *after* the image:
 
 ```css
-background: url(image.gif); /*ImageEmbed:skip*/
+background: url(image.gif); /*CssUrlRewrite:skip*/
 ```
 
 ## Compatibility

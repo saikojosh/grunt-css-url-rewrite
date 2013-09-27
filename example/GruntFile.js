@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   grunt.loadTasks("../tasks");
 
   grunt.initConfig({
-    imageEmbed: {
+    cssUrlRewrite: {
       dist: {
         src: "css/styles.css",
         dest: "css/output.css",
@@ -26,5 +26,5 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask("default", ["imageEmbed"]);
+  grunt.registerTask("default", ["cssUrlRewrite"]);
 };

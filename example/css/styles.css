@@ -5,7 +5,7 @@
 
 .skip {
   /* skip images using a comment directive */
-  background-image: url(images/test.gif); /*ImageEmbed:skip*/
+  background-image: url(images/test.gif); /*CssUrlRewrite:skip*/
 }
 
 .external {

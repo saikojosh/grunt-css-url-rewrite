@@ -15,7 +15,7 @@ var mime = require("mime");
 var grunt_fetch = require("./fetch");
 
 // Cache regex's
-var rImages = /([\s\S]*?)(url\(([^)]+)\))(?!\s*[;,]?\s*\/\*\s*ImageEmbed:skip\s*\*\/)|([\s\S]+)/img;
+var rImages = /([\s\S]*?)(url\(([^)]+)\))(?!\s*[;,]?\s*\/\*\s*CssUrlRewrite:skip\s*\*\/)|([\s\S]+)/img;
 var rExternal = /^http/;
 var rData = /^data:/;
 var rQuotes = /['"]/g;

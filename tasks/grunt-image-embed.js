@@ -18,7 +18,7 @@ module.exports = function(grunt) {
   // Grunt utils
   var async = grunt.util.async;
 
-  grunt.registerMultiTask("imageEmbed", "Embed images as base64 data URIs inside your stylesheets", function() {
+  grunt.registerMultiTask("cssUrlRewrite", "Embed images as base64 data URIs inside your stylesheets", function() {
     var opts = this.options();
     var done = this.async();
 
