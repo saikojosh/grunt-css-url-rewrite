@@ -1,5 +1,5 @@
 /*
- * Grunt Image Embed
+ * Grunt CSS Url Rewrite
  * https://github.com/jpunt/grunt-css-url-rewrite
  *
  * Copyright (c) 2013 Eric Hynds

@@ -1,4 +1,4 @@
-# Grunt Image Embed
+# Grunt CSS Url Rewrite
 
 This task converts all data found within a stylesheet (those within a url( ... ) declaration) into base64-encoded data URI strings. This includes images and fonts.
 
