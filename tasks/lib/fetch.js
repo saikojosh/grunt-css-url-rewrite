@@ -1,6 +1,6 @@
 /*
  * Grunt Image Embed
- * https://github.com/ehynds/grunt-image-embed
+ * https://github.com/jpunt/grunt-image-embed
  *
  * Copyright (c) 2012 Eric Hynds
  * Licensed under the MIT license.

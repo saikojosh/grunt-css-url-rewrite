@@ -10,7 +10,7 @@
 
 .external {
   /* external images don't really work, yet */
-  background-image: url('https://raw.github.com/ehynds/grunt-image-embed/master/example/images/test.png');
+  background-image: url('https://raw.github.com/jpunt/grunt-image-embed/master/example/images/test.png');
   border-width: 1px;
   border-style: solid;
   border-color: black;

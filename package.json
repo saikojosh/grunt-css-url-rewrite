@@ -10,10 +10,10 @@
   },
   "repository" : {
     "type" : "git",
-    "url" : "git://github.com/ehynds/grunt-image-embed.git"
+    "url" : "git://github.com/jpunt/grunt-image-embed.git"
   },
   "bugs" : {
-    "url" : "https://github.com/ehynds/grunt-image-embed/issues"
+    "url" : "https://github.com/jpunt/grunt-image-embed/issues"
   },
   "main" : "grunt.js",
   "bin" : "bin/grunt-image-embed",
