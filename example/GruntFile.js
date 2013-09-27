@@ -11,13 +11,17 @@ module.exports = function(grunt) {
         dest: "css/output.css",
 
         options: {
-          // Specify a max image size. Default is 32768 (32kb is IE8's limit).
-          // maxImageSize: 0,
-
-          // Base directory if you use absolute paths in your stylesheet
-          // baseDir: "/Users/ehynds/projects/grunt-image-embed/"
+          deleteAfterEncoding: false,
+          maxImageSize: 0,
+          fetchExternal: false,
+          warnDuplication: false,
+          keepParams: true,
+          rewriteUrl: function(loc, opts, resp) {
+            var path = loc.replace(opts.baseDir, '');
+            var hash = require('crypto').createHash('md5').update(resp).digest('hex');
+            return '/v-' + hash + '/' + path;
+          }
         }
-
       }
     }
   });

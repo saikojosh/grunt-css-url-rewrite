@@ -4,14 +4,7 @@ This task converts all data found within a stylesheet (those within a url( ... )
 
 Created by Eric Hynds [@erichynds](http://twitter.com/erichynds) with major contributions from [dancingplatypus](https://github.com/dancingplatypus).
 
-## Features
-
-* Supports both local & remote images.
-* Ability to specify a size limit. Default is 32kb which is IE8's limit.
-* Existing data URIs will be ignored.
-* Skip specific images by specifying a directive comment.
-* Ability to purge images that have been encoded
-* Includes two helpers: `encode_stylesheet` to encode a stylesheet, and `encode_image` to encode an image.
+Forked and modified(/hacked) by Jasper Haggenburg [@jpunt](http://twitter.com/jpunt). This made it possible to ditch the use of data URI strings, but use those strings to rewrite the url. For example: you can generate a hashed url to an image, based on the contents of this image.
 
 ## Getting Started
 
@@ -42,7 +35,16 @@ grunt.initConfig({
       src: [ "css/styles.css" ],
       dest: "css/output.css",
       options: {
-        deleteAfterEncoding : false
+        deleteAfterEncoding: false,
+        maxImageSize: 0,
+        fetchExternal: false,
+        warnDuplication: false,
+        keepParams: true,
+        rewriteUrl: function(loc, opts, resp) {
+          var path = loc.replace(opts.baseDir, '');
+          var hash = require('crypto').createHash('md5').update(resp).digest('hex');
+          return '/v-' + hash + '/' + path;
+        }
       }
     }
   }
