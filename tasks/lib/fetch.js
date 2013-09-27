@@ -1,6 +1,6 @@
 /*
  * Grunt Image Embed
- * https://github.com/jpunt/grunt-image-embed
+ * https://github.com/jpunt/grunt-css-url-rewrite
  *
  * Copyright (c) 2012 Eric Hynds
  * Licensed under the MIT license.

@@ -1,5 +1,5 @@
 {
-  "name" : "grunt-image-embed",
+  "name" : "grunt-css-url-rewrite",
   "description" : "A grunt task for rewriting urls inside a stylesheet, using base64-encoded strings.",
   "version" : "0.3.1",
   "homepage" : "",
@@ -10,13 +10,13 @@
   },
   "repository" : {
     "type" : "git",
-    "url" : "git://github.com/jpunt/grunt-image-embed.git"
+    "url" : "git://github.com/jpunt/grunt-css-url-rewrite.git"
   },
   "bugs" : {
-    "url" : "https://github.com/jpunt/grunt-image-embed/issues"
+    "url" : "https://github.com/jpunt/grunt-css-url-rewrite/issues"
   },
   "main" : "grunt.js",
-  "bin" : "bin/grunt-image-embed",
+  "bin" : "bin/grunt-css-url-rewrite",
   "engines" : {
     "node" : ">= 0.8.0"
   },

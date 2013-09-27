@@ -11,13 +11,13 @@ Forked and modified(/hacked) by Jasper Haggenburg [@jpunt](http://twitter.com/jp
 Install this plugin with the command:
 
 ```js
-npm install grunt-image-embed
+npm install grunt-css-url-rewrite
 ```
 
 Next, add this line to your project's grunt file:
 
 ```js
-grunt.loadNpmTasks("grunt-image-embed");
+grunt.loadNpmTasks("grunt-css-url-rewrite");
 ```
 
 Lastly, add configuration settings to your grunt.js file (see below).
