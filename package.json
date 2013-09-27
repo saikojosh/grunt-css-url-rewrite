@@ -1,12 +1,12 @@
 {
   "name" : "grunt-image-embed",
-  "description" : "Grunt task for embedding images as base64 data URIs inside your stylesheets.",
+  "description" : "A grunt task for rewriting urls inside a stylesheet, using base64-encoded strings.",
   "version" : "0.3.1",
   "homepage" : "",
   "author" : {
-    "name" : "Eric Hynds",
-    "email" : "ehynds@gmail.com",
-    "url" : "http://erichynds.com"
+    "name" : "Jasper Haggenburg",
+    "email" : "jasper@jpunt.nl",
+    "url" : "http://jpunt.nl"
   },
   "repository" : {
     "type" : "git",
