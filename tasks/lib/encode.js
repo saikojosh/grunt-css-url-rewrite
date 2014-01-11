@@ -77,7 +77,9 @@ exports.init = function(grunt) {
       if(group[4] == null) {
         result += group[1];
 
-        params = group[3].match(rParams);
+        params = group[3]
+          .replace(rQuotes, "")
+          .match(rParams);
 
         img = group[3].trim()
           .replace(rQuotes, "")
