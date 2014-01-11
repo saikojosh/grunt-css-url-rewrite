@@ -31,7 +31,7 @@ grunt.initConfig({
       src: [ "css/styles.css" ],
       dest: "css/output.css",
       options: {
-        fetchExternal: false,
+        skipExternal: true,
         rewriteUrl: function(url, options, dataURI) {
           var path = url.replace(options.baseDir, '');
           var hash = require('crypto').createHash('md5').update(dataURI).digest('hex');
@@ -48,7 +48,8 @@ grunt.initConfig({
 CssUrlRewrite can be customized by specifying the following options:
 
 * `baseDir`: If you have absolute image paths in your stylesheet, the path specified in this option will be used as the base directory.
-* `stripParameters': Remove querystring-parameters from url's.
+* `stripParameters`: Remove querystring-parameters from url's.
+* `skipExternal`: Skip external url's. Rewriting external url's doesn't always work yet, so this could be necessary for good results.
 
 ### Skipping Images
 
@@ -60,9 +61,9 @@ background: url(image.gif?gruntCssUrlRewrite=skip);
 
 ## Compatibility
 
-Version >= 0.3.0 of this plugin is compatible with Grunt 0.4.x. Versions 0.0.1 through 0.2.0 are only compatible with Grunt 0.3.x.
+This plugin is compatible with Grunt 0.4.x.
 
 ## License
 
-Copyright (c) 2013 Eric Hynds (@erichynds)
+Copyright (c) 2014 Jasper Haggenburg (@jpunt)
 Licensed under the MIT License.

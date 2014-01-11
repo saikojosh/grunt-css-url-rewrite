@@ -88,6 +88,13 @@ exports.init = function(grunt) {
           return;
         }
 
+        // Skip external
+        if(opts.skipExternal && rExternal.test(img)) {
+          result += 'url("' + img + '")';
+          complete();
+          return;
+        }
+
         // process it
         var loc = img,
           is_local_file = !rData.test(img) && !rExternal.test(img);
@@ -150,11 +157,6 @@ exports.init = function(grunt) {
       opts = {};
     }
 
-    // Set default, helper-specific options
-    opts = _.extend({
-      fetchExternal: true
-    }, opts);
-
     var complete = function(err, encoded) {
       // Return the original source if an error occurred
       if(err) {
@@ -170,13 +172,9 @@ exports.init = function(grunt) {
     // Already base64 encoded?
     if(rData.test(img)) {
       complete(null, img, false);
-
-      // External URL?
-    } else if(rExternal.test(img)) {
-      if(!opts.fetchExternal) {
-        complete(null, img, false);
-        return;
-      }
+    } else
+    // External URL?
+    if(rExternal.test(img)) {
       grunt.log.writeln("Encoding file: " + img);
       fetch.image(img, function(err, src) {
         var encoded, type;
@@ -185,7 +183,7 @@ exports.init = function(grunt) {
           encoded = exports.getDataURI(type, src);
         }
         complete(err, encoded);
-      } );
+      });
 
       // Local file?
     } else {

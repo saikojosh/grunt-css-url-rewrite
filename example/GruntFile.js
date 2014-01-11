@@ -11,7 +11,7 @@ module.exports = function(grunt) {
         dest: "css/output.css",
 
         options: {
-          fetchExternal: false,
+          skipExternal: true,
           rewriteUrl: function(loc, opts, resp) {
             var path = loc.replace(opts.baseDir, '');
             var hash = require('crypto').createHash('md5').update(resp).digest('hex');

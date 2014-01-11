@@ -41,6 +41,28 @@ exports['test css encoding'] = {
     });
   },
 
+  "can fetch external urls": function(test) {
+    test.expect(1);
+    var input = __dirname + "/css/test_singleurl_external.css";
+    encode.stylesheet(input, {
+      skipExternal: false
+    }, function(err, str) {
+      test.equal(str, 'body { background-image: url("' + encoded_gif + '"); }' + linefeed);
+      test.done();
+    });
+  },
+
+  "can skip external urls": function(test) {
+    test.expect(1);
+    var input = __dirname + "/css/test_singleurl_external.css";
+    encode.stylesheet(input, {
+      skipExternal: true
+    }, function(err, str) {
+      test.equal(str, 'body { background-image: url("https://raw.github.com/jpunt/grunt-css-url-rewrite/master/test/css/images/test.gif"); }' + linefeed);
+      test.done();
+    });
+  },
+
   "can encode more than one url on a line": function(test) {
     test.expect(1);
     var input = __dirname + "/css/test_multiurl_oneline.css";
