@@ -27,7 +27,7 @@ exports['test css encoding'] = {
     test.expect(1);
     var input = __dirname + "/css/test_singleurl.css";
     encode.stylesheet(input, function(err, str) {
-      test.equal(str, "body { background-image: url(" + encoded_gif + "); }" + linefeed);
+      test.equal(str, 'body { background-image: url("' + encoded_gif + '"); }' + linefeed);
       test.done();
     });
   },
@@ -36,7 +36,7 @@ exports['test css encoding'] = {
     test.expect(1);
     var input = __dirname + "/css/test_singleurl_withquotes.css";
     encode.stylesheet(input, function(err, str) {
-      test.equal(str, "body { background-image: url(" + encoded_gif + "); }" + linefeed);
+      test.equal(str, 'body { background-image: url("' + encoded_gif + '"); }' + linefeed);
       test.done();
     });
   },
@@ -45,7 +45,7 @@ exports['test css encoding'] = {
     test.expect(1);
     var input = __dirname + "/css/test_multiurl_oneline.css";
     encode.stylesheet(input, function(err, str) {
-      test.equal(str, "body { background-image: url(" + encoded_gif + "); background-image: url(" + encoded_gif + "); }" + linefeed);
+      test.equal(str, 'body { background-image: url("' + encoded_gif + '"); background-image: url("' + encoded_gif + '"); }' + linefeed);
       test.done();
     });
   },
@@ -54,7 +54,7 @@ exports['test css encoding'] = {
     test.expect(1);
     var input = __dirname + "/css/test_font_eot.css";
     encode.stylesheet(input, function(err, str) {
-      test.equal(str, "@font-face { src: url(" + encoded_eot + "); }" + linefeed);
+      test.equal(str, '@font-face { src: url("' + encoded_eot + '"); }' + linefeed);
       test.done();
     });
   },
@@ -63,7 +63,7 @@ exports['test css encoding'] = {
     test.expect(1);
     var input = __dirname + "/css/test_font_woff.css";
     encode.stylesheet(input, function(err, str) {
-      test.equal(str, "@font-face { src: url(" + encoded_woff + "); }" + linefeed);
+      test.equal(str, '@font-face { src: url("' + encoded_woff + '"); }' + linefeed);
       test.done();
     });
   },
@@ -72,7 +72,7 @@ exports['test css encoding'] = {
   //   test.expect(1);
   //   var input = __dirname + "/css/test_font_tff.css";
   //   encode.stylesheet(input, function(err, str) {
-  //     test.equal(str, "@font-face { src: url(" + encoded_tff + "); }" + linefeed);
+  //     test.equal(str, '@font-face { src: url("' + encoded_tff + '"); }' + linefeed);
   //     test.done();
   //   });
   // },
@@ -81,7 +81,7 @@ exports['test css encoding'] = {
   //   test.expect(1);
   //   var input = __dirname + "/css/test_font_svg.css";
   //   encode.stylesheet(input, function(err, str) {
-  //     test.equal(str, "@font-face { src: url(" + encoded_svg + "); }" + linefeed);
+  //     test.equal(str, '@font-face { src: url("' + encoded_svg + '"); }' + linefeed);
   //     test.done();
   //   });
   // },
@@ -90,7 +90,7 @@ exports['test css encoding'] = {
     test.expect(1);
     var input = __dirname + "/css/sub/test_multiurl_oneline.css";
     encode.stylesheet(input, function(err, str) {
-      test.equal(str, "body { background-image: url(" + encoded_gif + "); background-image: url(" + encoded_gif + "); }" + linefeed);
+      test.equal(str, 'body { background-image: url("' + encoded_gif + '"); background-image: url("' + encoded_gif + '"); }' + linefeed);
       test.done();
     });
   },
