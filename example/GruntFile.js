@@ -12,9 +12,7 @@ module.exports = function(grunt) {
 
         options: {
           deleteAfterEncoding: false,
-          maxImageSize: 0,
           fetchExternal: false,
-          warnDuplication: false,
           keepParams: true,
           rewriteUrl: function(loc, opts, resp) {
             var path = loc.replace(opts.baseDir, '');

@@ -32,9 +32,7 @@ grunt.initConfig({
       dest: "css/output.css",
       options: {
         deleteAfterEncoding: false,
-        maxImageSize: 0,
         fetchExternal: false,
-        warnDuplication: false,
         keepParams: true,
         rewriteUrl: function(url, options, dataURI) {
           var path = url.replace(options.baseDir, '');
@@ -51,7 +49,6 @@ grunt.initConfig({
 
 CssUrlRewrite can be customized by specifying the following options:
 
-* `maxImageSize`: The maximum size of the base64 string in bytes. This defaults to `32768`, or IE8's limit. Set this to `0` to remove the limit and allow any size string.
 * `baseDir`: If you have absolute image paths in your stylesheet, the path specified in this option will be used as the base directory.
 * `deleteAfterEncoding`: Set this to true to delete images after they've been encoded. You'll want to do this in a staging area, and not in your source directories.  Be careful.
 

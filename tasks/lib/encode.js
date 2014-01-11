@@ -47,9 +47,6 @@ exports.init = function(grunt) {
   exports.stylesheet = function(srcFile, opts, done) {
     opts = opts || {};
 
-    // Cache of already converted images
-    var cache = {};
-
     // Shift args if no options object is specified
     if(utils.kindOf(opts) === "function") {
       done = opts;
@@ -92,60 +89,47 @@ exports.init = function(grunt) {
           return;
         }
 
-        // see if this img was already processed before...
-        if(cache[img]) {
-          if(opts.warnDuplication !== false) {
-            grunt.log.error("The image " + img + " has already been encoded elsewhere in your stylesheet. I'm going to do it again, but it's going to make your stylesheet a lot larger than it needs to be.");
+        // process it
+        var loc = img,
+          is_local_file = !rData.test(img) && !rExternal.test(img);
+
+        // Resolve the image path relative to the CSS file
+        if(is_local_file) {
+          // local file system.. fix up the path
+          loc = img.charAt(0) === "/" ?
+            (opts.baseDir || "") + loc :
+            path.join(path.dirname(srcFile),  (opts.baseDir || "") + img);
+
+          // If that didn't work, try finding the image relative to
+          // the current file instead.
+          if(!fs.existsSync(loc)) {
+            loc = path.resolve(__dirname + img);
           }
-          result = result += cache[img];
-          complete();
-        } else {
-          // process it and put it into the cache
-          var loc = img,
-            is_local_file = !rData.test(img) && !rExternal.test(img);
-
-          // Resolve the image path relative to the CSS file
-          if(is_local_file) {
-            // local file system.. fix up the path
-            loc = img.charAt(0) === "/" ?
-              (opts.baseDir || "") + loc :
-              path.join(path.dirname(srcFile),  (opts.baseDir || "") + img);
-
-            // If that didn't work, try finding the image relative to
-            // the current file instead.
-            if(!fs.existsSync(loc)) {
-              loc = path.resolve(__dirname + img);
-            }
-          }
-
-          exports.image(loc, opts, function(err, resp, cacheable) {
-            if (err == null) {
-              if(opts.keepParams && params && params.length > 0) {
-                loc = loc + params.join('');
-              }
-
-              if(opts.rewriteUrl) {
-                resp = opts.rewriteUrl(loc, opts, resp);
-              }
-
-              var url = 'url("' + resp + '")';
-              result += url;
-
-              if(cacheable !== false) {
-                cache[img] = url;
-              }
-
-              if(deleteAfterEncoding && is_local_file) {
-                grunt.log.writeln("deleting " + loc);
-                fs.unlinkSync(loc);
-              }
-            } else {
-              result += group[2];
-            }
-
-            complete();
-          });
         }
+
+        exports.image(loc, opts, function(err, resp) {
+          if (err == null) {
+            if(opts.keepParams && params && params.length > 0) {
+              loc = loc + params.join('');
+            }
+
+            if(opts.rewriteUrl) {
+              resp = opts.rewriteUrl(loc, opts, resp);
+            }
+
+            var url = 'url("' + resp + '")';
+            result += url;
+
+            if(deleteAfterEncoding && is_local_file) {
+              grunt.log.writeln("deleting " + loc);
+              fs.unlinkSync(loc);
+            }
+          } else {
+            result += group[2];
+          }
+
+          complete();
+        });
       } else {
         result += group[4];
         complete();
@@ -174,24 +158,18 @@ exports.init = function(grunt) {
 
     // Set default, helper-specific options
     opts = _.extend({
-      maxImageSize: 32768,
       fetchExternal: true
     }, opts);
 
-    var complete = function(err, encoded, cacheable) {
-      // Too long?
-      if(cacheable && encoded && opts.maxImageSize && encoded.length > opts.maxImageSize) {
-        err = "Skipping " + img + " (greater than " + opts.maxImageSize + " bytes)";
-      }
-
+    var complete = function(err, encoded) {
       // Return the original source if an error occurred
       if(err) {
         grunt.log.error(err);
         done(err, img, false);
 
-        // Otherwise cache the processed image and return it
+        // Otherwise return the processed image
       } else {
-        done(null, encoded, cacheable);
+        done(null, encoded);
       }
     };
 
@@ -206,13 +184,13 @@ exports.init = function(grunt) {
         return;
       }
       grunt.log.writeln("Encoding file: " + img);
-      fetch.image(img, function(err, src, cacheable) {
+      fetch.image(img, function(err, src) {
         var encoded, type;
         if (err == null) {
           type = mime.lookup(img);
           encoded = exports.getDataURI(type, src);
         }
-        complete(err, encoded, cacheable);
+        complete(err, encoded);
       } );
 
       // Local file?
