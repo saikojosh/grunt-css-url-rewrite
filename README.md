@@ -28,7 +28,7 @@ An example configuration looks like this:
 grunt.initConfig({
   cssUrlRewrite: {
     dist: {
-      src: [ "css/styles.css" ],
+      src: "css/styles.css",
       dest: "css/output.css",
       options: {
         skipExternal: true,
@@ -41,6 +41,72 @@ grunt.initConfig({
     }
   }
 });
+```
+
+```css
+/* styles.css */
+
+.local {
+  /* local images */
+  background-image: url('../images/test.png');
+}
+
+.skip {
+  /* skip images using a querystring directive */
+  background-image: url('../images/test.gif?gruntCssUrlRewrite=skip');
+}
+
+.external {
+  /* external images don't really work, yet */
+  background-image: url('https://raw.github.com/jpunt/grunt-css-url-rewrite/master/example/images/test.png');
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+}
+
+@font-face {
+  font-family: 'tar_bkregular';
+  src: url('../fonts/chunkfive-webfont.eot');
+  src: url('../fonts/chunkfive-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/chunkfive-webfont.woff') format('woff'),
+       url('../fonts/chunkfive-webfont.ttf') format('truetype'),
+       url('../fonts/chunkfive-webfont.svg#tar_bkregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+```
+
+```css
+/* output.css */
+
+.local {
+  /* local images */
+  background-image: url("/v-c673f2e6e65779f0f23c8b96d35e4118/images/test.png");
+}
+
+.skip {
+  /* skip images using a querystring directive */
+  background-image: url("../images/test.gif");
+}
+
+.external {
+  /* external images don't really work, yet */
+  background-image: url("https://raw.github.com/jpunt/grunt-css-url-rewrite/master/example/images/test.png");
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+}
+
+@font-face {
+  font-family: 'tar_bkregular';
+  src: url("/v-4dcb54828bb2a94b6259d2c738191f5e/fonts/chunkfive-webfont.eot");
+  src: url("/v-4dcb54828bb2a94b6259d2c738191f5e/fonts/chunkfive-webfont.eot?#iefix") format('embedded-opentype'),
+       url("/v-700acb7385ecf3df057af8fba100a1b7/fonts/chunkfive-webfont.woff") format('woff'),
+       url("/v-752d9880e832fa7bcfe8a101d56c51f9/fonts/chunkfive-webfont.ttf") format('truetype'),
+       url("/v-6ebd8105448deb58f622caa3a37feb35/fonts/chunkfive-webfont.svg#tar_bkregular") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
 ```
 
 ### Optional Configuration Properties

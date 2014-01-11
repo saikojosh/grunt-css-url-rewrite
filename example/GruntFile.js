@@ -9,12 +9,11 @@ module.exports = function(grunt) {
       dist: {
         src: "css/styles.css",
         dest: "css/output.css",
-
         options: {
           skipExternal: true,
-          rewriteUrl: function(loc, opts, resp) {
-            var path = loc.replace(opts.baseDir, '');
-            var hash = require('crypto').createHash('md5').update(resp).digest('hex');
+          rewriteUrl: function(url, options, dataURI) {
+            var path = url.replace(options.baseDir, '');
+            var hash = require('crypto').createHash('md5').update(dataURI).digest('hex');
             return '/v-' + hash + '/' + path;
           }
         }
