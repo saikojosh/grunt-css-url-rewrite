@@ -86,7 +86,7 @@ exports.init = function(grunt) {
           .replace(rParams, ""); // remove query string/hash parmams in the filename, like foo.png?bar or foo.png#bar
 
         // Ignore and strip off by querystring
-        if(grunt.util._.indexOf(params, "?gruntCssUrlRewrite=skip") > -1) {
+        if(_.indexOf(params, "?gruntCssUrlRewrite=skip") > -1) {
           result += 'url("' + img + '")';
           complete();
           return;
