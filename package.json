@@ -1,6 +1,6 @@
 {
   "name" : "grunt-css-url-rewrite",
-  "description" : "A grunt task for rewriting urls inside a stylesheet, using base64-encoded strings.",
+  "description" : "A grunt task for rewriting urls inside a stylesheet",
   "version" : "0.3.2",
   "homepage" : "",
   "author" : {
