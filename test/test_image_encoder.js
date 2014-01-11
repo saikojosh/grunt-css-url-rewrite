@@ -44,22 +44,6 @@ exports['test image encoding'] = {
         });
     },
 
-    //
-    // NOTE -- I don't know how to trap Grunt Warn right now.  Could someone look into it?
-    //
-
-    /*
-    "on failure err should not be null, and str should hold the original": function(test) {
-        test.expect(2);
-        var input = __dirname + "/css/images/test_not_exist.gif";
-        grunt.helper("encode_image", input, function(err, str) {
-            test.equal(str, input);
-            test.notEqual(err, null);
-            test.done();
-        });
-    },
-    */
-
     "can encode remote image": function(test) {
         test.expect(1);
         var input = "https://raw.github.com/jpunt/grunt-css-url-rewrite/master/example/images/test.png";

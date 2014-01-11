@@ -50,6 +50,35 @@ exports['test css encoding'] = {
     });
   },
 
+  "can rewrite url": function(test) {
+    test.expect(1);
+    var input = __dirname + "/css/test_rewrite.css";
+    encode.stylesheet(input, {
+      rewriteUrl: function(url) {
+        url = url.replace(__dirname + "/css", "");
+        return '/v-1234' + url;
+      }
+    }, function(err, str) {
+      test.equal(str, 'body { background-image: url("/v-1234/images/test.gif"); }' + linefeed);
+      test.done();
+    });
+  },
+
+  "can rewrite url - keep parameters": function(test) {
+    test.expect(1);
+    var input = __dirname + "/css/test_rewrite_parameters.css";
+    encode.stylesheet(input, {
+      keepParams: true,
+      rewriteUrl: function(url) {
+        url = url.replace(__dirname + "/css", "");
+        return '/v-1234' + url;
+      }
+    }, function(err, str) {
+      test.equal(str, 'body { background-image: url("/v-1234/images/test.gif?parameters=keep"); }' + linefeed);
+      test.done();
+    });
+  },
+
   "can encode url for a eot-font": function(test) {
     test.expect(1);
     var input = __dirname + "/css/test_font_eot.css";
