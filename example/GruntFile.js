@@ -13,7 +13,6 @@ module.exports = function(grunt) {
         options: {
           deleteAfterEncoding: false,
           fetchExternal: false,
-          keepParams: true,
           rewriteUrl: function(loc, opts, resp) {
             var path = loc.replace(opts.baseDir, '');
             var hash = require('crypto').createHash('md5').update(resp).digest('hex');

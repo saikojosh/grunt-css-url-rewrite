@@ -33,7 +33,6 @@ grunt.initConfig({
       options: {
         deleteAfterEncoding: false,
         fetchExternal: false,
-        keepParams: true,
         rewriteUrl: function(url, options, dataURI) {
           var path = url.replace(options.baseDir, '');
           var hash = require('crypto').createHash('md5').update(dataURI).digest('hex');
@@ -50,6 +49,7 @@ grunt.initConfig({
 CssUrlRewrite can be customized by specifying the following options:
 
 * `baseDir`: If you have absolute image paths in your stylesheet, the path specified in this option will be used as the base directory.
+* `stripParameters': Remove querystring-parameters from url's.
 * `deleteAfterEncoding`: Set this to true to delete images after they've been encoded. You'll want to do this in a staging area, and not in your source directories.  Be careful.
 
 ### Skipping Images

@@ -109,7 +109,7 @@ exports.init = function(grunt) {
 
         exports.image(loc, opts, function(err, resp) {
           if (err == null) {
-            if(opts.keepParams && params && params.length > 0) {
+            if(!opts.stripParameters && params && params.length > 0) {
               loc = loc + params.join('');
             }
 

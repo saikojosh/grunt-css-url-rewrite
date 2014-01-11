@@ -59,22 +59,22 @@ exports['test css encoding'] = {
         return '/v-1234' + url;
       }
     }, function(err, str) {
-      test.equal(str, 'body { background-image: url("/v-1234/images/test.gif"); }' + linefeed);
+      test.equal(str, 'body { background-image: url("/v-1234/images/test.gif?parameters=keep"); }' + linefeed);
       test.done();
     });
   },
 
-  "can rewrite url - keep parameters": function(test) {
+  "can rewrite url - strip parameters": function(test) {
     test.expect(1);
-    var input = __dirname + "/css/test_rewrite_parameters.css";
+    var input = __dirname + "/css/test_rewrite_strip_parameters.css";
     encode.stylesheet(input, {
-      keepParams: true,
+      stripParameters: true,
       rewriteUrl: function(url) {
         url = url.replace(__dirname + "/css", "");
         return '/v-1234' + url;
       }
     }, function(err, str) {
-      test.equal(str, 'body { background-image: url("/v-1234/images/test.gif?parameters=keep"); }' + linefeed);
+      test.equal(str, 'body { background-image: url("/v-1234/images/test.gif"); }' + linefeed);
       test.done();
     });
   },
