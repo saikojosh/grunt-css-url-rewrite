@@ -57,10 +57,10 @@ CssUrlRewrite can be customized by specifying the following options:
 
 ### Skipping Images
 
-Specify that an image should be skipped by adding the following comment directive *after* the image:
+Specify that an image should be skipped by adding the following querystring *after* the image:
 
 ```css
-background: url(image.gif); /*CssUrlRewrite:skip*/
+background: url(image.gif?gruntCssUrlRewrite=skip);
 ```
 
 ## Compatibility

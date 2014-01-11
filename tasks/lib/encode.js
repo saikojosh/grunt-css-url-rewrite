@@ -15,7 +15,7 @@ var mime = require("mime");
 var grunt_fetch = require("./fetch");
 
 // Cache regex's
-var rImages = /([\s\S]*?)(url\(([^)]+)\))(?!\s*[;,]?\s*\/\*\s*CssUrlRewrite:skip\s*\*\/)|([\s\S]+)/img;
+var rImages = /([\s\S]*?)(url\(([^)]+)\))(?!\s*[;,]?\s*\/\*\s*CssUrlRewrite:skip\s*\*\/)|([\s\S]+)/img; // TODO: Strip of CssUrlRewrite:skip
 var rExternal = /^http/;
 var rData = /^data:/;
 var rQuotes = /['"]/g;
@@ -84,6 +84,13 @@ exports.init = function(grunt) {
         img = group[3].trim()
           .replace(rQuotes, "")
           .replace(rParams, ""); // remove query string/hash parmams in the filename, like foo.png?bar or foo.png#bar
+
+        // Ignore and strip off by querystring
+        if(grunt.util._.indexOf(params, "?gruntCssUrlRewrite=skip") > -1) {
+          result += 'url("' + img + '")';
+          complete();
+          return;
+        }
 
         // see if this img was already processed before...
         if(cache[img]) {

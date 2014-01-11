@@ -4,8 +4,8 @@
 }
 
 .skip {
-  /* skip images using a comment directive */
-  background-image: url(images/test.gif); /*CssUrlRewrite:skip*/
+  /* skip images using a querystring directive */
+  background-image: url(images/test.gif?gruntCssUrlRewrite=skip);
 }
 
 .external {

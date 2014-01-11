@@ -79,6 +79,15 @@ exports['test css encoding'] = {
     });
   },
 
+  "can ignore line": function(test) {
+    test.expect(1);
+    var input = __dirname + "/css/test_ignore.css";
+    encode.stylesheet(input, function(err, str) {
+      test.equal(str, 'body { background-image: url("images/test.gif"); }' + linefeed);
+      test.done();
+    });
+  },
+
   "can encode url for a eot-font": function(test) {
     test.expect(1);
     var input = __dirname + "/css/test_font_eot.css";
