@@ -11,7 +11,6 @@ module.exports = function(grunt) {
         dest: "css/output.css",
 
         options: {
-          deleteAfterEncoding: false,
           fetchExternal: false,
           rewriteUrl: function(loc, opts, resp) {
             var path = loc.replace(opts.baseDir, '');

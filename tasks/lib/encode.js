@@ -53,7 +53,6 @@ exports.init = function(grunt) {
       opts = {};
     }
 
-    var deleteAfterEncoding = opts.deleteAfterEncoding;
     var src = file.read(srcFile);
     var result = "";
     var match, img, line, tasks, group, params;
@@ -119,11 +118,6 @@ exports.init = function(grunt) {
 
             var url = 'url("' + resp + '")';
             result += url;
-
-            if(deleteAfterEncoding && is_local_file) {
-              grunt.log.writeln("deleting " + loc);
-              fs.unlinkSync(loc);
-            }
           } else {
             result += group[2];
           }
