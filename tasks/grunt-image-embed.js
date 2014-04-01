@@ -40,8 +40,9 @@ module.exports = function(grunt) {
         grunt.file.write(dest, output);
         grunt.log.writeln('File "' + dest + '" created.');
         filesRemaining--;
-        if (filesRemaining == 0)
+        if (filesRemaining === 0) {
           done();
+        }
       });
     });
   });
