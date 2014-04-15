@@ -35,8 +35,8 @@ module.exports = function(grunt) {
         };
       });
 
-      // Once all files have been processed write them out.	  
-      var cb = function(err, output) {
+      // Once all files have been processed write them out.
+      var callback = function(err, output) {
         grunt.file.write(dest, output);
         grunt.log.writeln('File "' + dest + '" created.');
         filesRemaining--;
@@ -44,13 +44,14 @@ module.exports = function(grunt) {
           done();
         }
       };
+
       if (opts.parallel === false) {
         grunt.util._.each(tasks, function(task) {
-          task(cb);
+          task(callback);
         });
       } else {
         // Once all files have been processed write them out.
-        async.parallel(tasks, cb);
+        async.parallel(tasks, callback);
       }
     });
   });
