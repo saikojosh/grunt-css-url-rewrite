@@ -5,7 +5,7 @@ module.exports = function(grunt) {
   grunt.loadTasks("../tasks");
 
   grunt.initConfig({
-    cssUrlRewrite: {
+    cssUrlRewrite2: {
       dist: {
         src: "css/styles.css",
         dest: "css/output.css",
@@ -21,5 +21,5 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask("default", ["cssUrlRewrite"]);
+  grunt.registerTask("default", ["cssUrlRewrite2"]);
 };

@@ -26,7 +26,7 @@ An example configuration looks like this:
 
 ```js
 grunt.initConfig({
-  cssUrlRewrite: {
+  cssUrlRewrite2: {
     dist: {
       src: "css/styles.css",
       dest: "css/output.css",
