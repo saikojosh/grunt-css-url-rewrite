@@ -1,19 +1,24 @@
 {
-  "name" : "grunt-css-url-rewrite",
+  "name" : "grunt-css-url-rewrite-2",
   "description" : "A grunt task for rewriting urls inside a stylesheet",
   "version" : "0.3.5",
   "homepage" : "",
   "author" : {
+    "name" : "Josh Cole",
+    "email" : "hello@joshuacole.me",
+    "url" : "http://www.joshuacole.me"
+  },
+  "contributors": [{
     "name" : "Jasper Haggenburg",
     "email" : "jasper@jpunt.nl",
     "url" : "http://jpunt.nl"
-  },
+  }],
   "repository" : {
     "type" : "git",
-    "url" : "git://github.com/jpunt/grunt-css-url-rewrite.git"
+    "url" : "git://github.com/saikojosh/grunt-css-url-rewrite-2.git"
   },
   "bugs" : {
-    "url" : "https://github.com/jpunt/grunt-css-url-rewrite/issues"
+    "url" : "https://github.com/saikojosh/grunt-css-url-rewrite-2/issues"
   },
   "main" : "grunt.js",
   "bin" : "bin/grunt-css-url-rewrite",
