@@ -157,6 +157,9 @@ exports.init = function(grunt) {
       opts = {};
     }
 
+		// Not everybody wants every single image loaded from disk.
+		if (opts.skipEncoding) { return done(null, null); }
+
     var complete = function(err, encoded) {
       // Return the original source if an error occurred
       if(err) {

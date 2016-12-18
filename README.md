@@ -117,6 +117,7 @@ CssUrlRewrite can be customized by specifying the following options:
 * `stripParameters`: Remove querystring-parameters from url's.
 * `skipExternal`: Skip external url's. Rewriting external url's doesn't always work yet, so this could be necessary for good results.
 * `parallel`: true to execute the rewrite asynchronously for each file. Default value is true.
+* `skipEncoding`: true to prevent the image from being loaded from disk and encoded as base64.
 
 ### Skipping Images
 
