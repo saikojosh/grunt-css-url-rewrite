@@ -100,7 +100,7 @@ exports.init = function(grunt) {
           is_local_file = !rData.test(img) && !rExternal.test(img);
 
         // Resolve the image path relative to the CSS file
-        if(is_local_file) {
+        if(is_local_file && !opts.skipEncoding) {
           // local file system.. fix up the path
           loc = img.charAt(0) === "/" ?
             (opts.baseDir || "") + loc :
